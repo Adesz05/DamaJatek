@@ -66,6 +66,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -79,6 +80,36 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FeherAmoga.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FeherKoronasAmoga.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FeketeAmoga.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FeketeKoronasAmoga.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sotet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vilagos.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sotetmezoFeherAmogaval.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sotetmezoFeherKoronasAmogaval.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sotetmezoFeketeAmogaval.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sotetmezoFeketeKoronasAmogaval.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -13,14 +13,14 @@ namespace Dáma
     class Mezo
     {
         public PictureBox mezo;
-        public bool VaneRajta;
         public string MelyikSzin;
+        public string MelyikBabu;
 
-        public Mezo(PictureBox mezo, bool vaneRajta, string melyikszin)
+        public Mezo(PictureBox mezo, string melyikszin, string melyikbabu)
         {
             this.mezo = mezo;
-            VaneRajta = vaneRajta;
             MelyikSzin = melyikszin;
+            MelyikBabu = melyikbabu;
         }
     }
 }
