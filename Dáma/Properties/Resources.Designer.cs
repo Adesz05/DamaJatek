@@ -153,6 +153,16 @@ namespace Dáma.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap sotetzoldpotyivelakozepen {
+            get {
+                object obj = ResourceManager.GetObject("sotetzoldpotyivelakozepen", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap vilagos {
             get {
                 object obj = ResourceManager.GetObject("vilagos", resourceCulture);

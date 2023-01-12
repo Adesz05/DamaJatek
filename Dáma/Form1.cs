@@ -64,13 +64,26 @@ namespace Dáma
         private void Klikkeles(object sender, EventArgs e)
         {
             Mezo klikkelt = sender as Mezo;
-            if (klikkelt.MelyikBabu==kijon)
+            //fehér------------------------------------------------------------------------------------------------------------------------------------------------------
+            if (klikkelt.MelyikBabu==kijon || klikkelt.MelyikBabu == kijon + "dáma")
             {
-                
+                if (klikkelt.Koordinatak.X != 0 && tabla[klikkelt.Koordinatak.X - 1, klikkelt.Koordinatak.Y - 1].MelyikBabu == "üres")
+                {
+                    tabla[klikkelt.Koordinatak.X - 1, klikkelt.Koordinatak.Y - 1].Image = Properties.Resources.sotetzoldpotyivelakozepen ;
+                    
+                }
+
+                //jobbra--------------------------------------------------------------------------------------------------------------------------------------------------
+                if (klikkelt.Koordinatak.X != 7 && tabla[klikkelt.Koordinatak.X + 1, klikkelt.Koordinatak.Y - 1].MelyikBabu == "üres")
+                {
+                    tabla[klikkelt.Koordinatak.X + 1, klikkelt.Koordinatak.Y - 1].Image = Properties.Resources.sotetzoldpotyivelakozepen ;
+
+                }
             }
             //MessageBox.Show($"x: {klikkelt.Koordinatak.X} y: {klikkelt.Koordinatak.Y}");
 
         }
+
         private void MatrixGeneralas()
         {
             int futasokszama = 0;

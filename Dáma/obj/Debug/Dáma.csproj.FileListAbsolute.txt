@@ -8,3 +8,13 @@ D:\DAMAJATEK\Dáma\bin\Debug\Dáma.pdb
 D:\DAMAJATEK\Dáma\obj\Debug\Dáma.exe
 D:\DAMAJATEK\Dáma\obj\Debug\Dáma.pdb
 D:\DamaJatek\Dáma\obj\Debug\Dáma.csprojAssemblyReference.cache
+D:\-_-\Dáma\bin\Debug\Dáma.exe.config
+D:\-_-\Dáma\bin\Debug\Dáma.exe
+D:\-_-\Dáma\bin\Debug\Dáma.pdb
+D:\-_-\Dáma\obj\Debug\Dáma.csprojAssemblyReference.cache
+D:\-_-\Dáma\obj\Debug\Dáma.Form1.resources
+D:\-_-\Dáma\obj\Debug\Dáma.Properties.Resources.resources
+D:\-_-\Dáma\obj\Debug\Dáma.csproj.GenerateResource.cache
+D:\-_-\Dáma\obj\Debug\Dáma.csproj.CoreCompileInputs.cache
+D:\-_-\Dáma\obj\Debug\Dáma.exe
+D:\-_-\Dáma\obj\Debug\Dáma.pdb
