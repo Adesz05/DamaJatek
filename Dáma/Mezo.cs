@@ -10,17 +10,17 @@ using System.Windows.Forms;
 
 namespace Dáma
 {
-    class Mezo
+    public partial class Mezo : PictureBox
     {
-        public PictureBox mezo;
         public string MelyikSzin;
         public string MelyikBabu;
+        public Point Koordinatak;
 
-        public Mezo(PictureBox mezo, string melyikszin, string melyikbabu)
+        public Mezo(string melyikszin, string melyikbabu, Point koordinatak)
         {
-            this.mezo = mezo;
             MelyikSzin = melyikszin;
             MelyikBabu = melyikbabu;
+            Koordinatak = koordinatak;
         }
     }
 }

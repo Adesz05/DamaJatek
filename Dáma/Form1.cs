@@ -15,6 +15,7 @@ namespace Dáma
         static int meret = 8;
         static int mezomeret = 80;
         static Mezo[,] tabla = new Mezo[meret,meret];
+        static string kijon = "fehér";
         public Form1()
         {
             MatrixGeneralas();
@@ -30,34 +31,46 @@ namespace Dáma
                 for (int j = 0; j < meret; j++)
                 {
                     //MessageBox.Show(tabla[i, j].MelyikSzin + " , " + tabla[i, j].MelyikBabu);
-                    tabla[i, j].mezo.Size = new Size(mezomeret, mezomeret);
+                    tabla[i, j].Size = new Size(mezomeret, mezomeret);
                     if (tabla[i, j].MelyikSzin == "világos")
                     {
-                        tabla[i, j].mezo.Image = Properties.Resources.vilagos;
+                        tabla[i, j].Image = Properties.Resources.vilagos;
                     }
                     else
                     {
                         if (tabla[i, j].MelyikBabu == "fekete")
                         {
-                            tabla[i, j].mezo.Image = Properties.Resources.sotetmezoFeketeAmogaval;
+                            tabla[i, j].Image = Properties.Resources.sotetmezoFeketeAmogaval;
                         }
                         else if (tabla[i, j].MelyikBabu == "fehér")
                         {
-                            tabla[i, j].mezo.Image = Properties.Resources.sotetmezoFeherAmogaval;
+                            tabla[i, j].Image = Properties.Resources.sotetmezoFeherAmogaval;
                         }
                         else
                         {
-                            tabla[i, j].mezo.Image = Properties.Resources.sotet;
+                            tabla[i, j].Image = Properties.Resources.sotet;
                         }
                     }
-                    tabla[i, j].mezo.Location = new Point(50+i*mezomeret,50+j*mezomeret);
-                    tabla[i, j].mezo.SizeMode = PictureBoxSizeMode.StretchImage;
-                    this.Controls.Add(tabla[i, j].mezo);
+                    tabla[i, j].Location = new Point(50+i*mezomeret,50+j*mezomeret);
+                    tabla[i, j].SizeMode = PictureBoxSizeMode.StretchImage;
+                    tabla[i, j].Click += new EventHandler(Klikkeles);
+                    tabla[i, j].Koordinatak = new Point(i, j);
+                    this.Controls.Add(tabla[i, j]);
 
                 }
             }
         }
 
+        private void Klikkeles(object sender, EventArgs e)
+        {
+            Mezo klikkelt = sender as Mezo;
+            if (klikkelt.MelyikBabu==kijon)
+            {
+                
+            }
+            //MessageBox.Show($"x: {klikkelt.Koordinatak.X} y: {klikkelt.Koordinatak.Y}");
+
+        }
         private void MatrixGeneralas()
         {
             int futasokszama = 0;
@@ -81,7 +94,7 @@ namespace Dáma
                         melyikbabu = "fehér";
                     }
 
-                    tabla[j,i] = new Mezo(new PictureBox(), (vilagos) ? "világos" : "sötét",melyikbabu);
+                    tabla[j,i] = new Mezo((vilagos) ? "világos" : "sötét",melyikbabu, new Point());
                     if (j!=7) vilagos = !vilagos;
                     futasokszama++;
                 }
