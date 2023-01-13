@@ -16,6 +16,9 @@ namespace Dáma
         static int mezomeret = 80;
         static Mezo[,] tabla = new Mezo[meret,meret];
         static string kijon = "fehér";
+        static bool vanekijeloltbabu = false;
+        static List<Mezo> mezokahovalepnilehet = new List<Mezo>();
+        static Mezo kijeloltbabu;
         public Form1()
         {
             MatrixGeneralas();
@@ -65,23 +68,76 @@ namespace Dáma
         {
             Mezo klikkelt = sender as Mezo;
             //fehér------------------------------------------------------------------------------------------------------------------------------------------------------
-            if (klikkelt.MelyikBabu==kijon || klikkelt.MelyikBabu == kijon + "dáma")
+            if (!vanekijeloltbabu)
             {
-                if (klikkelt.Koordinatak.X != 0 && tabla[klikkelt.Koordinatak.X - 1, klikkelt.Koordinatak.Y - 1].MelyikBabu == "üres")
+                if (klikkelt.MelyikBabu == kijon)
                 {
-                    tabla[klikkelt.Koordinatak.X - 1, klikkelt.Koordinatak.Y - 1].Image = Properties.Resources.sotetzoldpotyivelakozepen ;
-                    
-                }
+                    //balra lehet mozogni
+                    if (klikkelt.Koordinatak.X != 0)
+                    {
+                        //balra 1db átló mélység vizsgálat
+                        if (tabla[klikkelt.Koordinatak.X - 1, klikkelt.Koordinatak.Y - 1].MelyikBabu == "üres")
+                        {
+                            tabla[klikkelt.Koordinatak.X - 1, klikkelt.Koordinatak.Y - 1].Image = Properties.Resources.sotetzoldpotyivelakozepen;
+                            mezokahovalepnilehet.Add(tabla[klikkelt.Koordinatak.X - 1, klikkelt.Koordinatak.Y - 1]);
+                            vanekijeloltbabu = true;
+                            kijeloltbabu = klikkelt;
+                        }
+                        //ha balra az ellenfél bábuja amit ütni szeretnénk nem a fal mellett áll
+                        //a sajat babut ne lehessen leutni TODO
+                        else if (klikkelt.Koordinatak.X - 1 != 0 && tabla[klikkelt.Koordinatak.X - 2, klikkelt.Koordinatak.Y - 2].MelyikBabu == "üres")
+                        {
+                            tabla[klikkelt.Koordinatak.X - 2, klikkelt.Koordinatak.Y - 2].Image = Properties.Resources.sotetzoldpotyivelakozepen;
+                            mezokahovalepnilehet.Add(tabla[klikkelt.Koordinatak.X - 2, klikkelt.Koordinatak.Y - 2]);
+                            vanekijeloltbabu = true;
+                            kijeloltbabu = klikkelt;
+                        }
+                    }
 
-                //jobbra--------------------------------------------------------------------------------------------------------------------------------------------------
-                if (klikkelt.Koordinatak.X != 7 && tabla[klikkelt.Koordinatak.X + 1, klikkelt.Koordinatak.Y - 1].MelyikBabu == "üres")
-                {
-                    tabla[klikkelt.Koordinatak.X + 1, klikkelt.Koordinatak.Y - 1].Image = Properties.Resources.sotetzoldpotyivelakozepen ;
+                    //jobbra lehet mozogni
+                    if (klikkelt.Koordinatak.X != 7)
+                    {
+                        //jobbra 1db átló mélység vizsgálat
+                        if (tabla[klikkelt.Koordinatak.X + 1, klikkelt.Koordinatak.Y - 1].MelyikBabu == "üres")
+                        {
+                            tabla[klikkelt.Koordinatak.X + 1, klikkelt.Koordinatak.Y - 1].Image = Properties.Resources.sotetzoldpotyivelakozepen;
+                            mezokahovalepnilehet.Add(tabla[klikkelt.Koordinatak.X + 1, klikkelt.Koordinatak.Y - 1]);
+                            vanekijeloltbabu = true;
+                            kijeloltbabu = klikkelt;
+                        }
+                        //ha balra az ellenfél bábuja amit ütni szeretnénk nem a fal mellett áll
+                        else if(klikkelt.Koordinatak.X + 1 !=0 && tabla[klikkelt.Koordinatak.X + 2, klikkelt.Koordinatak.Y - 2].MelyikBabu == "üres")
+                        {
+                            tabla[klikkelt.Koordinatak.X + 2, klikkelt.Koordinatak.Y - 2].Image = Properties.Resources.sotetzoldpotyivelakozepen;
+                            mezokahovalepnilehet.Add(tabla[klikkelt.Koordinatak.X + 2, klikkelt.Koordinatak.Y - 2]);
+                            vanekijeloltbabu = true;
+                            kijeloltbabu = klikkelt;
+                        }
+                       
 
+                    }
                 }
             }
-            //MessageBox.Show($"x: {klikkelt.Koordinatak.X} y: {klikkelt.Koordinatak.Y}");
+            //van már egy kijelölt bábu
+            else
+            {
+                vanekijeloltbabu = false;
+                for (int i = 0; i < mezokahovalepnilehet.Count; i++)
+                {
+                    tabla[mezokahovalepnilehet[i].Koordinatak.X, mezokahovalepnilehet[i].Koordinatak.Y].Image = Properties.Resources.sotet;
+                    if (klikkelt== mezokahovalepnilehet[i])
+                    {
+                        //egyenlőre csak sima amogus bábu léphet oda
+                        tabla[mezokahovalepnilehet[i].Koordinatak.X, mezokahovalepnilehet[i].Koordinatak.Y].Image =Properties.Resources.sotetmezoFeherAmogaval;
+                        tabla[mezokahovalepnilehet[i].Koordinatak.X, mezokahovalepnilehet[i].Koordinatak.Y] =kijeloltbabu;
+                        tabla[kijeloltbabu.Koordinatak.X, kijeloltbabu.Koordinatak.Y].Image = Properties.Resources.sotet;
+                        tabla[kijeloltbabu.Koordinatak.X, kijeloltbabu.Koordinatak.Y].MelyikBabu="üres";
+                    }
+                }
+            }
 
+            //dáma if
+            // || klikkelt.MelyikBabu == kijon + "dáma"
         }
 
         private void MatrixGeneralas()
