@@ -19,6 +19,7 @@ namespace Dáma
         static bool vanekijeloltbabu = false;
         static List<Mezo> mezokahovalepnilehet = new List<Mezo>();
         static Mezo kijeloltbabu;
+        static List<Mezo> uthetomezok= new List<Mezo>();
         public Form1()
         {
             MatrixGeneralas();
@@ -91,6 +92,7 @@ namespace Dáma
                             tabla[klikkelt.Koordinatak.X - 2, klikkelt.Koordinatak.Y - 2].Image = Properties.Resources.sotetzoldpotyivelakozepen;
                             mezokahovalepnilehet.Add(tabla[klikkelt.Koordinatak.X - 2, klikkelt.Koordinatak.Y - 2]);
                             vanekijeloltbabu = true;
+                            uthetomezok.Add(tabla[klikkelt.Koordinatak.X - 1, klikkelt.Koordinatak.Y - 1]);
                             kijeloltbabu = klikkelt;
                         }
                     }
@@ -112,6 +114,7 @@ namespace Dáma
                             tabla[klikkelt.Koordinatak.X + 2, klikkelt.Koordinatak.Y - 2].Image = Properties.Resources.sotetzoldpotyivelakozepen;
                             mezokahovalepnilehet.Add(tabla[klikkelt.Koordinatak.X + 2, klikkelt.Koordinatak.Y - 2]);
                             vanekijeloltbabu = true;
+                            uthetomezok.Add(tabla[klikkelt.Koordinatak.X + 1, klikkelt.Koordinatak.Y - 1]);
                             kijeloltbabu = klikkelt;
                         }
                        
@@ -134,9 +137,17 @@ namespace Dáma
                         tabla[mezokahovalepnilehet[i].Koordinatak.X, mezokahovalepnilehet[i].Koordinatak.Y].MelyikBabu=kijeloltbabu.MelyikBabu;
                         tabla[kijeloltbabu.Koordinatak.X, kijeloltbabu.Koordinatak.Y].Image = Properties.Resources.sotet;
                         tabla[kijeloltbabu.Koordinatak.X, kijeloltbabu.Koordinatak.Y].MelyikBabu="üres";
+                        for (int j = 0; j < uthetomezok.Count; j++)
+                        {
+                            if (tabla[mezokahovalepnilehet[i].Koordinatak.X-1, mezokahovalepnilehet[i].Koordinatak.Y-1].Koordinatak==uthetomezok[i].Koordinatak)
+                            {
+
+                            }
+                        }
                     }
                 }
                 mezokahovalepnilehet.Clear();
+                uthetomezok.Clear();
             }
             
 
