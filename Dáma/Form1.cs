@@ -67,6 +67,7 @@ namespace Dáma
         private void Klikkeles(object sender, EventArgs e)
         {
             Mezo klikkelt = sender as Mezo;
+            //MessageBox.Show(klikkelt.Koordinatak.X + " meg " + klikkelt.Koordinatak.Y);
             //fehér------------------------------------------------------------------------------------------------------------------------------------------------------
             if (!vanekijeloltbabu)
             {
@@ -85,7 +86,7 @@ namespace Dáma
                         }
                         //ha balra az ellenfél bábuja amit ütni szeretnénk nem a fal mellett áll
                         //a sajat babut ne lehessen leutni TODO
-                        else if (klikkelt.Koordinatak.X - 1 != 0 && tabla[klikkelt.Koordinatak.X - 2, klikkelt.Koordinatak.Y - 2].MelyikBabu == "üres")
+                        else if (klikkelt.Koordinatak.X - 1 != 0 && tabla[klikkelt.Koordinatak.X - 2, klikkelt.Koordinatak.Y - 2].MelyikBabu == "üres" && tabla[klikkelt.Koordinatak.X - 1, klikkelt.Koordinatak.Y - 1].MelyikBabu != "fehér") //vagy dáma
                         {
                             tabla[klikkelt.Koordinatak.X - 2, klikkelt.Koordinatak.Y - 2].Image = Properties.Resources.sotetzoldpotyivelakozepen;
                             mezokahovalepnilehet.Add(tabla[klikkelt.Koordinatak.X - 2, klikkelt.Koordinatak.Y - 2]);
@@ -106,7 +107,7 @@ namespace Dáma
                             kijeloltbabu = klikkelt;
                         }
                         //ha balra az ellenfél bábuja amit ütni szeretnénk nem a fal mellett áll
-                        else if(klikkelt.Koordinatak.X + 1 !=0 && tabla[klikkelt.Koordinatak.X + 2, klikkelt.Koordinatak.Y - 2].MelyikBabu == "üres")
+                        else if(klikkelt.Koordinatak.X + 1 !=7 && tabla[klikkelt.Koordinatak.X + 2, klikkelt.Koordinatak.Y - 2].MelyikBabu == "üres" && tabla[klikkelt.Koordinatak.X + 1, klikkelt.Koordinatak.Y - 1].MelyikBabu != "fehér") // dáma //fekete meg nem jo
                         {
                             tabla[klikkelt.Koordinatak.X + 2, klikkelt.Koordinatak.Y - 2].Image = Properties.Resources.sotetzoldpotyivelakozepen;
                             mezokahovalepnilehet.Add(tabla[klikkelt.Koordinatak.X + 2, klikkelt.Koordinatak.Y - 2]);
@@ -121,6 +122,7 @@ namespace Dáma
             //van már egy kijelölt bábu
             else
             {
+                //MessageBox.Show("vankijeloltbabu");
                 vanekijeloltbabu = false;
                 for (int i = 0; i < mezokahovalepnilehet.Count; i++)
                 {
@@ -129,12 +131,14 @@ namespace Dáma
                     {
                         //egyenlőre csak sima amogus bábu léphet oda
                         tabla[mezokahovalepnilehet[i].Koordinatak.X, mezokahovalepnilehet[i].Koordinatak.Y].Image =Properties.Resources.sotetmezoFeherAmogaval;
-                        tabla[mezokahovalepnilehet[i].Koordinatak.X, mezokahovalepnilehet[i].Koordinatak.Y] =kijeloltbabu;
+                        tabla[mezokahovalepnilehet[i].Koordinatak.X, mezokahovalepnilehet[i].Koordinatak.Y].MelyikBabu=kijeloltbabu.MelyikBabu;
                         tabla[kijeloltbabu.Koordinatak.X, kijeloltbabu.Koordinatak.Y].Image = Properties.Resources.sotet;
                         tabla[kijeloltbabu.Koordinatak.X, kijeloltbabu.Koordinatak.Y].MelyikBabu="üres";
                     }
                 }
+                mezokahovalepnilehet.Clear();
             }
+            
 
             //dáma if
             // || klikkelt.MelyikBabu == kijon + "dáma"
@@ -152,7 +156,7 @@ namespace Dáma
             {
                 for (int j = 0; j < meret; j++)
                 {
-                    if (!vilagos && feherbabuk < 12)
+                    if (!vilagos && feherbabuk < 8 && i!=1)
                     {
                         melyikbabu = "fekete";
                         feherbabuk++;
