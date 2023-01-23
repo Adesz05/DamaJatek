@@ -10,12 +10,17 @@ namespace Dáma
     {
         public int MozgasMennyiseg;
         public int Irany;
+        public string Szin;
+        public bool Dama;
 
 
-        public Babu(int irany)
+        public Babu(int irany, string szin)
         {
             MozgasMennyiseg = 1;
             Irany = irany;
+            Szin = szin;
+            Dama = false;
+            
 
         }
     }

@@ -25,53 +25,19 @@ namespace Dáma
         static List<Babu> player2 = new List<Babu>();
         public Form1()
         {
-            MatrixGeneralas();
-            MezoPictureboxBeallitas();
-
             InitializeComponent();
+            MatrixGeneralas();
         }
 
-        private void MezoPictureboxBeallitas()
-        {/*
-            for (int i = 0; i < meret; i++)
-            {
-                for (int j = 0; j < meret; j++)
-                {
-                    //MessageBox.Show(tabla[i, j].MelyikSzin + " , " + tabla[i, j].MelyikBabu);
-                    tabla[i, j].Size = new Size(mezomeret, mezomeret);
-                    if (tabla[i, j].MelyikSzin == "világos")
-                    {
-                        tabla[i, j].Image = Properties.Resources.vilagos;
-                    }
-                    else
-                    {
-                        if (tabla[i, j].MelyikBabu == "fekete")
-                        {
-                            tabla[i, j].Image = Properties.Resources.sotetmezoFeketeAmogaval;
-                        }
-                        else if (tabla[i, j].MelyikBabu == "fehér")
-                        {
-                            tabla[i, j].Image = Properties.Resources.sotetmezoFeherAmogaval;
-                        }
-                        else
-                        {
-                            tabla[i, j].Image = Properties.Resources.sotet;
-                        }
-                    }
-                    tabla[i, j].Location = new Point(50+i*mezomeret,50+j*mezomeret);
-                    tabla[i, j].SizeMode = PictureBoxSizeMode.StretchImage;
-                    tabla[i, j].Click += new EventHandler(Klikkeles);
-                    tabla[i, j].Koordinatak = new Point(i, j);
-                    this.Controls.Add(tabla[i, j]);
 
-                }
-            }*/
-        }
 
         private void Klikkeles(object sender, EventArgs e)
         {
             Mezo klikkelt = sender as Mezo;
-
+            if (!klikkelt.Jelolt)
+            {
+                VisszaAllit();
+            }
             if (klikkelt.Babu != null)
             {
                 if (kijelolt == null)
@@ -87,38 +53,99 @@ namespace Dáma
             {
                 if (kijelolt != null)
                 {
-                    Mozgas();
+                    Mozgas(klikkelt);
                 }
             }
         }
 
-        private void Mozgas()
+        private void Mozgas(Mezo klikkelt)
         {
-            throw new NotImplementedException();
+            if (klikkelt.Jelolt)
+            {
+                klikkelt.Jelolt = false;
+                klikkelt.Image = kijelolt.Image;
+                klikkelt.Babu = kijelolt.Babu;
+                kijelolt.Image = Properties.Resources.sotet;
+                kijelolt.Babu = null;
+                VisszaAllit();
+            }
+        }
+
+        private void VisszaAllit()
+        {
+            for (int sor = 0; sor < tabla.GetLength(0); sor++)
+            {
+                for (int oszlop = 0; oszlop < tabla.GetLength(1); oszlop++)
+                {
+                    if (tabla[sor, oszlop].Jelolt)
+                    {
+                        tabla[sor, oszlop].Jelolt = false;
+                        tabla[sor, oszlop].Image = Properties.Resources.sotet;
+                    }
+                }
+            }
+            kijelolt = null;
         }
 
         private int HovaLephet()
         {
             int lehetoseg = 0;
-
-
+            int meddig = kijelolt.Babu.MozgasMennyiseg;
 
             for (int i = 1; i <= kijelolt.Babu.MozgasMennyiseg; i++)
             {
-                tabla[Index_Kezeles(kijelolt.Koordinatak.X - kijelolt.Babu.Irany * i), kijelolt.Koordinatak.Y + i].Image = Properties.Resources.sotetzoldpotyivelakozepen;
-                tabla[kijelolt.Koordinatak.X - kijelolt.Babu.Irany * i, kijelolt.Koordinatak.Y + i].Jelolt = true;
+                for (int j = -1; j <= 1; j+=2)
+                {
+                    try
+                    {
+                        if (!UtesKotelezettseg().Contains(kijelolt.Koordinatak))
+                        {
+                            if (tabla[kijelolt.Koordinatak.X - kijelolt.Babu.Irany * i, kijelolt.Koordinatak.Y + i * j].Babu == null)
+                            {
+                                tabla[kijelolt.Koordinatak.X - kijelolt.Babu.Irany * i, kijelolt.Koordinatak.Y + i*j].Image = Properties.Resources.sotetzoldpotyivelakozepen;
+                                tabla[kijelolt.Koordinatak.X - kijelolt.Babu.Irany * i, kijelolt.Koordinatak.Y + i*j].Jelolt = true;
+                                lehetoseg++;
+                            }
+                            else if (tabla[kijelolt.Koordinatak.X - kijelolt.Babu.Irany * i, kijelolt.Koordinatak.Y + i * j].Babu.Szin != kijelolt.Babu.Szin)
+                            {
+                                if ()
+                                {
 
-                tabla[kijelolt.Koordinatak.X - kijelolt.Babu.Irany * i, kijelolt.Koordinatak.Y - i].Image = Properties.Resources.sotetzoldpotyivelakozepen;
-                tabla[kijelolt.Koordinatak.X - kijelolt.Babu.Irany * i, kijelolt.Koordinatak.Y - i].Jelolt = true;
-                lehetoseg++;
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception) { }
+                }
             }
             return lehetoseg;
 
         }
 
-        private int Index_Kezeles(int szam)
+        private List<Point> UtesKotelezettseg()
         {
-            return szam < 0 ? 0 : szam;
+            List<Point> lista = new List<Point>();
+            for (int sor = 0; sor < tabla.GetLength(0); sor++)
+            {
+                for (int oszlop = 0; oszlop < tabla.GetLength(1); oszlop++)
+                {
+                    try
+                    {
+                        if (tabla[sor, oszlop].Babu != null && tabla[sor, oszlop].Babu.Szin == kijelolt.Babu.Szin)
+                        {
+                            for (int i = -1; i <= 1; i+=2)
+                            {
+                                if (tabla[sor - kijelolt.Babu.Irany * i, oszlop + i].Babu.Szin == null)
+                                {
+                                    lista.Add(tabla[sor - kijelolt.Babu.Irany * i, oszlop + i].Koordinatak);
+                                }
+                            }
+                        }
+                    }
+                    catch(Exception) { }
+                }
+            }
+            return lista;
         }
 
         private void MatrixGeneralas()
@@ -135,8 +162,8 @@ namespace Dáma
                 }
             }
 
-            GenerateBabuk(Properties.Resources.sotetmezoFeketeAmogaval, 0, meret, 1, player1);
-            GenerateBabuk(Properties.Resources.sotetmezoFeherAmogaval, meret-1, -1, -1, player2);
+            GenerateBabuk(Properties.Resources.sotetmezoFeketeAmogaval, 0, meret, 1, player1, "Fehér");
+            GenerateBabuk(Properties.Resources.sotetmezoFeherAmogaval, meret-1, -1, -1, player2, "Fekete");
             EventHozzadas();
         }
 
@@ -148,13 +175,18 @@ namespace Dáma
                 {
                     if (Sotet_e(sor, oszlop))
                     {
-                        tabla[sor, oszlop].MouseDown += new MouseEventHandler(Klikkeles);
+                        tabla[sor, oszlop].Click += new EventHandler(Klikkeles);
                     }
+                    else
+                    {
+                        tabla[sor, oszlop].Click += delegate (object sender, EventArgs e) { VisszaAllit(); };
+                    }
+
                 }
             }
         }
 
-        private void GenerateBabuk(Image kep, int honnan, int hova, int leptek, List<Babu> player)
+        private void GenerateBabuk(Image kep, int honnan, int hova, int leptek, List<Babu> player, string szin)
         {
             for (int sor = honnan; leptek > 0 ? sor < hova : sor > hova; sor+=leptek)
             {
@@ -163,7 +195,7 @@ namespace Dáma
                     if (Sotet_e(sor, oszlop))
                     {
                         tabla[sor, oszlop].Image = kep;
-                        tabla[sor, oszlop].Babu = new Babu(-1 * leptek);
+                        tabla[sor, oszlop].Babu = new Babu(-1 * leptek, szin);
                         player.Add(tabla[sor, oszlop].Babu);
                         if (player.Count >= babuszam)
                         {
