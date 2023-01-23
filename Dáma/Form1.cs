@@ -100,28 +100,25 @@ namespace Dáma
         private int HovaLephet()
         {
             int lehetoseg = 0;
-            try
-            {
-                for (int sor = kijelolt.Koordinatak.X; kijelolt.Babu.Irany > 0 ? sor < sor + kijelolt.Babu.Irany : sor > sor + kijelolt.Babu.Irany; sor += kijelolt.Babu.Irany)
-                {
-                    for (int oszlop = kijelolt.Koordinatak.Y; kijelolt.Babu.Irany > 0 ? oszlop < oszlop + kijelolt.Babu.Irany : oszlop > oszlop + kijelolt.Babu.Irany; oszlop += kijelolt.Babu.Irany)
-                    {
-                        for (int i = -1; i <= 1; i+=2)
-                        {
-                            tabla[sor, oszlop + i].Image = Properties.Resources.sotetzoldpotyivelakozepen;
-                            tabla[sor, oszlop + i].Jelolt = true;
-                            lehetoseg++;
-                        }
-                    }
-                }
-            }
-            catch (Exception)
-            {
 
 
+
+            for (int i = 1; i <= kijelolt.Babu.MozgasMennyiseg; i++)
+            {
+                tabla[Index_Kezeles(kijelolt.Koordinatak.X - kijelolt.Babu.Irany * i), kijelolt.Koordinatak.Y + i].Image = Properties.Resources.sotetzoldpotyivelakozepen;
+                tabla[kijelolt.Koordinatak.X - kijelolt.Babu.Irany * i, kijelolt.Koordinatak.Y + i].Jelolt = true;
+
+                tabla[kijelolt.Koordinatak.X - kijelolt.Babu.Irany * i, kijelolt.Koordinatak.Y - i].Image = Properties.Resources.sotetzoldpotyivelakozepen;
+                tabla[kijelolt.Koordinatak.X - kijelolt.Babu.Irany * i, kijelolt.Koordinatak.Y - i].Jelolt = true;
+                lehetoseg++;
             }
             return lehetoseg;
 
+        }
+
+        private int Index_Kezeles(int szam)
+        {
+            return szam < 0 ? 0 : szam;
         }
 
         private void MatrixGeneralas()
