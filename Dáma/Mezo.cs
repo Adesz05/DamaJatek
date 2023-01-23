@@ -12,15 +12,16 @@ namespace Dáma
 {
     public partial class Mezo : PictureBox
     {
-        public string MelyikSzin;
-        public string MelyikBabu;
+        public Babu Babu;
         public Point Koordinatak;
+        public bool Jelolt;
 
-        public Mezo(string melyikszin, string melyikbabu, Point koordinatak)
+        public Mezo(Point koordinatak, Image kep)
         {
-            MelyikSzin = melyikszin;
-            MelyikBabu = melyikbabu;
+            Babu = null;
             Koordinatak = koordinatak;
+            Image = kep;
+            Jelolt = false;
         }
     }
 }

@@ -18,3 +18,13 @@ D:\-_-\Dáma\obj\Debug\Dáma.csproj.GenerateResource.cache
 D:\-_-\Dáma\obj\Debug\Dáma.csproj.CoreCompileInputs.cache
 D:\-_-\Dáma\obj\Debug\Dáma.exe
 D:\-_-\Dáma\obj\Debug\Dáma.pdb
+D:\xampp\htdocs\2-14 SZFT 2022-2023\Projektek\Dama\Dáma\bin\Debug\Dáma.exe.config
+D:\xampp\htdocs\2-14 SZFT 2022-2023\Projektek\Dama\Dáma\bin\Debug\Dáma.exe
+D:\xampp\htdocs\2-14 SZFT 2022-2023\Projektek\Dama\Dáma\bin\Debug\Dáma.pdb
+D:\xampp\htdocs\2-14 SZFT 2022-2023\Projektek\Dama\Dáma\obj\Debug\Dáma.csproj.AssemblyReference.cache
+D:\xampp\htdocs\2-14 SZFT 2022-2023\Projektek\Dama\Dáma\obj\Debug\Dáma.Form1.resources
+D:\xampp\htdocs\2-14 SZFT 2022-2023\Projektek\Dama\Dáma\obj\Debug\Dáma.Properties.Resources.resources
+D:\xampp\htdocs\2-14 SZFT 2022-2023\Projektek\Dama\Dáma\obj\Debug\Dáma.csproj.GenerateResource.cache
+D:\xampp\htdocs\2-14 SZFT 2022-2023\Projektek\Dama\Dáma\obj\Debug\Dáma.csproj.CoreCompileInputs.cache
+D:\xampp\htdocs\2-14 SZFT 2022-2023\Projektek\Dama\Dáma\obj\Debug\Dáma.exe
+D:\xampp\htdocs\2-14 SZFT 2022-2023\Projektek\Dama\Dáma\obj\Debug\Dáma.pdb

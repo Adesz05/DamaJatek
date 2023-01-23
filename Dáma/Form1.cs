@@ -18,7 +18,11 @@ namespace Dáma
         static string kijon = "fehér";
         static bool vanekijeloltbabu = false;
         static List<Mezo> mezokahovalepnilehet = new List<Mezo>();
-        static Mezo kijeloltbabu;
+        static Mezo kijelolt = null;
+        static Point kezdoHely = new Point(50, 50);
+        static int babuszam = 12;
+        static List<Babu> player1 = new List<Babu>();
+        static List<Babu> player2 = new List<Babu>();
         public Form1()
         {
             MatrixGeneralas();
@@ -28,7 +32,7 @@ namespace Dáma
         }
 
         private void MezoPictureboxBeallitas()
-        {
+        {/*
             for (int i = 0; i < meret; i++)
             {
                 for (int j = 0; j < meret; j++)
@@ -61,113 +65,126 @@ namespace Dáma
                     this.Controls.Add(tabla[i, j]);
 
                 }
-            }
+            }*/
         }
 
         private void Klikkeles(object sender, EventArgs e)
         {
             Mezo klikkelt = sender as Mezo;
-            //fehér------------------------------------------------------------------------------------------------------------------------------------------------------
-            if (!vanekijeloltbabu)
+
+            if (klikkelt.Babu != null)
             {
-                if (klikkelt.MelyikBabu == kijon)
+                if (kijelolt == null)
                 {
-                    //balra lehet mozogni
-                    if (klikkelt.Koordinatak.X != 0)
+                    kijelolt = klikkelt;
+                    if (HovaLephet() < 1)
                     {
-                        //balra 1db átló mélység vizsgálat
-                        if (tabla[klikkelt.Koordinatak.X - 1, klikkelt.Koordinatak.Y - 1].MelyikBabu == "üres")
-                        {
-                            tabla[klikkelt.Koordinatak.X - 1, klikkelt.Koordinatak.Y - 1].Image = Properties.Resources.sotetzoldpotyivelakozepen;
-                            mezokahovalepnilehet.Add(tabla[klikkelt.Koordinatak.X - 1, klikkelt.Koordinatak.Y - 1]);
-                            vanekijeloltbabu = true;
-                            kijeloltbabu = klikkelt;
-                        }
-                        //ha balra az ellenfél bábuja amit ütni szeretnénk nem a fal mellett áll
-                        //a sajat babut ne lehessen leutni TODO
-                        else if (klikkelt.Koordinatak.X - 1 != 0 && tabla[klikkelt.Koordinatak.X - 2, klikkelt.Koordinatak.Y - 2].MelyikBabu == "üres")
-                        {
-                            tabla[klikkelt.Koordinatak.X - 2, klikkelt.Koordinatak.Y - 2].Image = Properties.Resources.sotetzoldpotyivelakozepen;
-                            mezokahovalepnilehet.Add(tabla[klikkelt.Koordinatak.X - 2, klikkelt.Koordinatak.Y - 2]);
-                            vanekijeloltbabu = true;
-                            kijeloltbabu = klikkelt;
-                        }
-                    }
-
-                    //jobbra lehet mozogni
-                    if (klikkelt.Koordinatak.X != 7)
-                    {
-                        //jobbra 1db átló mélység vizsgálat
-                        if (tabla[klikkelt.Koordinatak.X + 1, klikkelt.Koordinatak.Y - 1].MelyikBabu == "üres")
-                        {
-                            tabla[klikkelt.Koordinatak.X + 1, klikkelt.Koordinatak.Y - 1].Image = Properties.Resources.sotetzoldpotyivelakozepen;
-                            mezokahovalepnilehet.Add(tabla[klikkelt.Koordinatak.X + 1, klikkelt.Koordinatak.Y - 1]);
-                            vanekijeloltbabu = true;
-                            kijeloltbabu = klikkelt;
-                        }
-                        //ha balra az ellenfél bábuja amit ütni szeretnénk nem a fal mellett áll
-                        else if(klikkelt.Koordinatak.X + 1 !=0 && tabla[klikkelt.Koordinatak.X + 2, klikkelt.Koordinatak.Y - 2].MelyikBabu == "üres")
-                        {
-                            tabla[klikkelt.Koordinatak.X + 2, klikkelt.Koordinatak.Y - 2].Image = Properties.Resources.sotetzoldpotyivelakozepen;
-                            mezokahovalepnilehet.Add(tabla[klikkelt.Koordinatak.X + 2, klikkelt.Koordinatak.Y - 2]);
-                            vanekijeloltbabu = true;
-                            kijeloltbabu = klikkelt;
-                        }
-                       
-
+                        kijelolt = null;
                     }
                 }
             }
-            //van már egy kijelölt bábu
             else
             {
-                vanekijeloltbabu = false;
-                for (int i = 0; i < mezokahovalepnilehet.Count; i++)
+                if (kijelolt != null)
                 {
-                    tabla[mezokahovalepnilehet[i].Koordinatak.X, mezokahovalepnilehet[i].Koordinatak.Y].Image = Properties.Resources.sotet;
-                    if (klikkelt== mezokahovalepnilehet[i])
+                    Mozgas();
+                }
+            }
+        }
+
+        private void Mozgas()
+        {
+            throw new NotImplementedException();
+        }
+
+        private int HovaLephet()
+        {
+            int lehetoseg = 0;
+            try
+            {
+                for (int sor = kijelolt.Koordinatak.X; kijelolt.Babu.Irany > 0 ? sor < sor + kijelolt.Babu.Irany : sor > sor + kijelolt.Babu.Irany; sor += kijelolt.Babu.Irany)
+                {
+                    for (int oszlop = kijelolt.Koordinatak.Y; kijelolt.Babu.Irany > 0 ? oszlop < oszlop + kijelolt.Babu.Irany : oszlop > oszlop + kijelolt.Babu.Irany; oszlop += kijelolt.Babu.Irany)
                     {
-                        //egyenlőre csak sima amogus bábu léphet oda
-                        tabla[mezokahovalepnilehet[i].Koordinatak.X, mezokahovalepnilehet[i].Koordinatak.Y].Image =Properties.Resources.sotetmezoFeherAmogaval;
-                        tabla[mezokahovalepnilehet[i].Koordinatak.X, mezokahovalepnilehet[i].Koordinatak.Y] =kijeloltbabu;
-                        tabla[kijeloltbabu.Koordinatak.X, kijeloltbabu.Koordinatak.Y].Image = Properties.Resources.sotet;
-                        tabla[kijeloltbabu.Koordinatak.X, kijeloltbabu.Koordinatak.Y].MelyikBabu="üres";
+                        for (int i = -1; i <= 1; i+=2)
+                        {
+                            tabla[sor, oszlop + i].Image = Properties.Resources.sotetzoldpotyivelakozepen;
+                            tabla[sor, oszlop + i].Jelolt = true;
+                            lehetoseg++;
+                        }
                     }
                 }
             }
+            catch (Exception)
+            {
 
-            //dáma if
-            // || klikkelt.MelyikBabu == kijon + "dáma"
+
+            }
+            return lehetoseg;
+
         }
 
         private void MatrixGeneralas()
         {
-            int futasokszama = 0;
-            int feherbabuk = 0;
-            bool vilagos = true;
-            string melyikbabu = "üres";
-
-
-            for (int i = 0; i < meret; i++)
+            for (int sor = 0; sor < meret; sor++)
             {
-                for (int j = 0; j < meret; j++)
+                for (int oszlop = 0; oszlop < meret; oszlop++)
                 {
-                    if (!vilagos && feherbabuk < 12)
-                    {
-                        melyikbabu = "fekete";
-                        feherbabuk++;
-                    }
-                    else melyikbabu = "üres";
-                    if (futasokszama > 39 && !vilagos)
-                    {
-                        melyikbabu = "fehér";
-                    }
-
-                    tabla[j,i] = new Mezo((vilagos) ? "világos" : "sötét",melyikbabu, new Point());
-                    if (j!=7) vilagos = !vilagos;
-                    futasokszama++;
+                    tabla[sor, oszlop] = GenerateMezo(sor, oszlop);
+                    tabla[sor, oszlop].Location = new Point(kezdoHely.X + oszlop * mezomeret, kezdoHely.Y + sor * mezomeret);
+                    tabla[sor, oszlop].Size = new Size(mezomeret, mezomeret);
+                    tabla[sor, oszlop].SizeMode = PictureBoxSizeMode.StretchImage;
+                    this.Controls.Add(tabla[sor, oszlop]);
                 }
             }
+
+            GenerateBabuk(Properties.Resources.sotetmezoFeketeAmogaval, 0, meret, 1, player1);
+            GenerateBabuk(Properties.Resources.sotetmezoFeherAmogaval, meret-1, -1, -1, player2);
+            EventHozzadas();
+        }
+
+        private void EventHozzadas()
+        {
+            for (int sor = 0; sor < meret; sor++)
+            {
+                for (int oszlop = 0; oszlop < meret; oszlop++)
+                {
+                    if (Sotet_e(sor, oszlop))
+                    {
+                        tabla[sor, oszlop].MouseDown += new MouseEventHandler(Klikkeles);
+                    }
+                }
+            }
+        }
+
+        private void GenerateBabuk(Image kep, int honnan, int hova, int leptek, List<Babu> player)
+        {
+            for (int sor = honnan; leptek > 0 ? sor < hova : sor > hova; sor+=leptek)
+            {
+                for (int oszlop = honnan; leptek > 0 ? oszlop < hova : oszlop > hova; oszlop+=leptek)
+                {
+                    if (Sotet_e(sor, oszlop))
+                    {
+                        tabla[sor, oszlop].Image = kep;
+                        tabla[sor, oszlop].Babu = new Babu(-1 * leptek);
+                        player.Add(tabla[sor, oszlop].Babu);
+                        if (player.Count >= babuszam)
+                        {
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+
+        private Mezo GenerateMezo(int sor, int oszlop)
+        {
+            return new Mezo(new Point(sor, oszlop), Sotet_e(sor, oszlop) ? Properties.Resources.sotet : Properties.Resources.vilagos);
+        }
+
+        private bool Sotet_e(int sor, int oszlop)
+        {
+            return sor % 2 == 0 && oszlop % 2 == 1 || sor % 2 == 1 && oszlop % 2 == 0 ? true : false;
         }
     }
 }
