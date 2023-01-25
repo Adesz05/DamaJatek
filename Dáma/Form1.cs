@@ -19,7 +19,8 @@ namespace Dáma
         static bool vanekijeloltbabu = false;
         static List<Mezo> mezokahovalepnilehet = new List<Mezo>();
         static Mezo kijeloltbabu;
-        static List<Mezo> uthetomezok= new List<Mezo>();
+        static Dictionary<Mezo, Mezo> uthetomezok = new Dictionary<Mezo, Mezo>();// key=lepheto val=utheto
+        static bool uteskenyszer = false;
         public Form1()
         {
             MatrixGeneralas();
@@ -83,7 +84,7 @@ namespace Dáma
                             tabla[klikkelt.Koordinatak.X - 1, klikkelt.Koordinatak.Y - 1].Image = Properties.Resources.sotetzoldpotyivelakozepen;
                             mezokahovalepnilehet.Add(tabla[klikkelt.Koordinatak.X - 1, klikkelt.Koordinatak.Y - 1]);
                             vanekijeloltbabu = true;
-                            kijeloltbabu = klikkelt;
+                            kijeloltbabu = klikkelt; 
                         }
                         //ha balra az ellenfél bábuja amit ütni szeretnénk nem a fal mellett áll
                         //a sajat babut ne lehessen leutni TODO
@@ -92,8 +93,10 @@ namespace Dáma
                             tabla[klikkelt.Koordinatak.X - 2, klikkelt.Koordinatak.Y - 2].Image = Properties.Resources.sotetzoldpotyivelakozepen;
                             mezokahovalepnilehet.Add(tabla[klikkelt.Koordinatak.X - 2, klikkelt.Koordinatak.Y - 2]);
                             vanekijeloltbabu = true;
-                            uthetomezok.Add(tabla[klikkelt.Koordinatak.X - 1, klikkelt.Koordinatak.Y - 1]);
+
+                            uthetomezok.Add(tabla[klikkelt.Koordinatak.X-2,klikkelt.Koordinatak.Y-2],tabla[klikkelt.Koordinatak.X - 1, klikkelt.Koordinatak.Y - 1]);
                             kijeloltbabu = klikkelt;
+                            uteskenyszer = true;
                         }
                     }
 
@@ -101,7 +104,7 @@ namespace Dáma
                     if (klikkelt.Koordinatak.X != 7)
                     {
                         //jobbra 1db átló mélység vizsgálat
-                        if (tabla[klikkelt.Koordinatak.X + 1, klikkelt.Koordinatak.Y - 1].MelyikBabu == "üres")
+                        if (tabla[klikkelt.Koordinatak.X + 1, klikkelt.Koordinatak.Y - 1].MelyikBabu == "üres" && !uteskenyszer)
                         {
                             tabla[klikkelt.Koordinatak.X + 1, klikkelt.Koordinatak.Y - 1].Image = Properties.Resources.sotetzoldpotyivelakozepen;
                             mezokahovalepnilehet.Add(tabla[klikkelt.Koordinatak.X + 1, klikkelt.Koordinatak.Y - 1]);
@@ -114,12 +117,18 @@ namespace Dáma
                             tabla[klikkelt.Koordinatak.X + 2, klikkelt.Koordinatak.Y - 2].Image = Properties.Resources.sotetzoldpotyivelakozepen;
                             mezokahovalepnilehet.Add(tabla[klikkelt.Koordinatak.X + 2, klikkelt.Koordinatak.Y - 2]);
                             vanekijeloltbabu = true;
-                            uthetomezok.Add(tabla[klikkelt.Koordinatak.X + 1, klikkelt.Koordinatak.Y - 1]);
+                            uthetomezok.Add(tabla[klikkelt.Koordinatak.X + 2, klikkelt.Koordinatak.Y - 2],tabla[klikkelt.Koordinatak.X + 1, klikkelt.Koordinatak.Y - 1]);
                             kijeloltbabu = klikkelt;
+                            uteskenyszer = true;
                         }
                        
 
                     }
+                    if (uteskenyszer && tabla[klikkelt.Koordinatak.X - 1, klikkelt.Koordinatak.Y - 1].MelyikBabu == "üres")
+                    {
+                        tabla[klikkelt.Koordinatak.X - 1, klikkelt.Koordinatak.Y - 1].Image = Properties.Resources.sotet;
+                    }
+                    uteskenyszer = false;
                 }
             }
             //van már egy kijelölt bábu
@@ -133,14 +142,24 @@ namespace Dáma
                     if (klikkelt== mezokahovalepnilehet[i])
                     {
                         //egyenlőre csak sima amogus bábu léphet oda
-                        tabla[mezokahovalepnilehet[i].Koordinatak.X, mezokahovalepnilehet[i].Koordinatak.Y].Image =Properties.Resources.sotetmezoFeherAmogaval;
+                        if (kijon=="fehér")
+                        {
+                            tabla[mezokahovalepnilehet[i].Koordinatak.X, mezokahovalepnilehet[i].Koordinatak.Y].Image =Properties.Resources.sotetmezoFeherAmogaval;
+                        }
+                        else
+                        {
+                            tabla[mezokahovalepnilehet[i].Koordinatak.X, mezokahovalepnilehet[i].Koordinatak.Y].Image =Properties.Resources.sotetmezoFeketeAmogaval;
+
+                        }
                         tabla[mezokahovalepnilehet[i].Koordinatak.X, mezokahovalepnilehet[i].Koordinatak.Y].MelyikBabu=kijeloltbabu.MelyikBabu;
                         tabla[kijeloltbabu.Koordinatak.X, kijeloltbabu.Koordinatak.Y].Image = Properties.Resources.sotet;
                         tabla[kijeloltbabu.Koordinatak.X, kijeloltbabu.Koordinatak.Y].MelyikBabu="üres";
-                        for (int j = 0; j < uthetomezok.Count; j++)
+                        foreach (KeyValuePair<Mezo, Mezo> item in uthetomezok)
                         {
-                            if (tabla[mezokahovalepnilehet[i].Koordinatak.X-1, mezokahovalepnilehet[i].Koordinatak.Y-1].Koordinatak==uthetomezok[i].Koordinatak)
+                            if (item.Key.Koordinatak==klikkelt.Koordinatak)
                             {
+                                item.Value.Image = Properties.Resources.sotet;
+                                item.Value.MelyikBabu= "üres";
 
                             }
                         }
@@ -155,6 +174,11 @@ namespace Dáma
             // || klikkelt.MelyikBabu == kijon + "dáma"
         }
 
+        private void BalOldaliKijelolesVisszaAllitasa()
+        {
+            
+        }
+
         private void MatrixGeneralas()
         {
             int futasokszama = 0;
@@ -167,7 +191,7 @@ namespace Dáma
             {
                 for (int j = 0; j < meret; j++)
                 {
-                    if (!vilagos && feherbabuk < 8 && i!=1)
+                    if (!vilagos && feherbabuk < 12 /*&& i!=1*/)
                     {
                         melyikbabu = "fekete";
                         feherbabuk++;

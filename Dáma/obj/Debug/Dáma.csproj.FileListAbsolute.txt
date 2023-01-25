@@ -18,3 +18,13 @@ D:\-_-\Dáma\obj\Debug\Dáma.csproj.GenerateResource.cache
 D:\-_-\Dáma\obj\Debug\Dáma.csproj.CoreCompileInputs.cache
 D:\-_-\Dáma\obj\Debug\Dáma.exe
 D:\-_-\Dáma\obj\Debug\Dáma.pdb
+D:\Damajatekjo\DamaJatek\Dáma\bin\Debug\Dáma.exe.config
+D:\Damajatekjo\DamaJatek\Dáma\bin\Debug\Dáma.exe
+D:\Damajatekjo\DamaJatek\Dáma\bin\Debug\Dáma.pdb
+D:\Damajatekjo\DamaJatek\Dáma\obj\Debug\Dáma.csprojAssemblyReference.cache
+D:\Damajatekjo\DamaJatek\Dáma\obj\Debug\Dáma.Form1.resources
+D:\Damajatekjo\DamaJatek\Dáma\obj\Debug\Dáma.Properties.Resources.resources
+D:\Damajatekjo\DamaJatek\Dáma\obj\Debug\Dáma.csproj.GenerateResource.cache
+D:\Damajatekjo\DamaJatek\Dáma\obj\Debug\Dáma.csproj.CoreCompileInputs.cache
+D:\Damajatekjo\DamaJatek\Dáma\obj\Debug\Dáma.exe
+D:\Damajatekjo\DamaJatek\Dáma\obj\Debug\Dáma.pdb
