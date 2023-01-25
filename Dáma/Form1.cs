@@ -19,7 +19,7 @@ namespace Dáma
         static bool vanekijeloltbabu = false;
         static List<Mezo> mezokahovalepnilehet = new List<Mezo>();
         static Mezo kijeloltbabu;
-        static Dictionary<Mezo, Mezo> uthetomezok = new Dictionary<Mezo, Mezo>();// key=lepheto val=utheto
+        static List<UtoUthetoLepheto> uthetomezok = new List<UtoUthetoLepheto>(); // key=lepheto val=utheto
         static bool uteskenyszer = false;
         public Form1()
         {
@@ -51,6 +51,14 @@ namespace Dáma
                         {
                             tabla[i, j].Image = Properties.Resources.sotetmezoFeherAmogaval;
                         }
+                        else if (tabla[i, j].MelyikBabu == "fehérdáma")
+                        {
+                            tabla[i, j].Image = Properties.Resources.sotetmezoFeherKoronasAmogaval;
+                        }
+                        else if (tabla[i, j].MelyikBabu == "feketedáma")
+                        {
+                            tabla[i, j].Image = Properties.Resources.sotetmezoFeketeKoronasAmogaval;
+                        }
                         else
                         {
                             tabla[i, j].Image = Properties.Resources.sotet;
@@ -71,7 +79,27 @@ namespace Dáma
             Mezo klikkelt = sender as Mezo;
             //MessageBox.Show(klikkelt.Koordinatak.X + " meg " + klikkelt.Koordinatak.Y);
             //fehér------------------------------------------------------------------------------------------------------------------------------------------------------
-            if (!vanekijeloltbabu)
+            KijelolesekTorlese();
+            if (klikkelt.MelyikBabu!="üres")
+            {
+                if (klikkelt.MelyikBabu == kijon || klikkelt.MelyikBabu==kijon+"dáma")
+                {
+                    if (UtoKenyszerVizsgalat(kijon))
+                    {
+                        if (uthetomezok.Count(x => x.Uto == klikkelt) > 0)
+                        {
+                            UthetoMezokMegjelenitese(klikkelt);
+                        }
+                    }
+                    //Nincs ütéskényszer
+                    else
+                    {
+                        MessageBox.Show("lépjé paraszt");
+                    }
+                }
+            }
+
+            /*if (!vanekijeloltbabu)
             {
                 if (klikkelt.MelyikBabu == kijon)
                 {
@@ -172,6 +200,78 @@ namespace Dáma
 
             //dáma if
             // || klikkelt.MelyikBabu == kijon + "dáma"
+            */
+        }
+
+        private void KijelolesekTorlese()
+        {
+            for (int i = 0; i < meret; i++)
+            {
+                for (int j = 0; j < meret; j++)
+                {
+                    if (tabla[i,j].MelyikSzin=="kijelölt")
+                    {
+                        tabla[i, j].MelyikSzin = "sötét";
+                        tabla[i, j].Image=Properties.Resources.sotet;
+                    }
+                }
+            }
+        }
+
+        private void UthetoMezokMegjelenitese(Mezo klikkelt)
+        {
+            foreach (UtoUthetoLepheto item in uthetomezok)
+            {
+                if (item.Uto==klikkelt)
+                {
+                    item.Lepheto.Image = Properties.Resources.sotetzoldpotyivelakozepen;
+                    item.Lepheto.MelyikSzin = "kijelölt";
+                }
+            }
+        }
+
+        private bool UtoKenyszerVizsgalat(string kijon)
+        {
+            uthetomezok.Clear();
+            for (int i = 0; i < meret; i++)
+            {
+                for (int j = 0; j < meret; j++)
+                {
+                    if (tabla[i,j].MelyikBabu.Contains(kijon))
+                    {
+                        for (int irany1 = -1; irany1 <= 1; irany1+=2)
+                        {
+                            for (int irany2 = -1; irany2 <= 1; irany2+=2)
+                            {
+                                for (int k = 1; k <= (tabla[i, j].MelyikBabu.Contains("dáma") ? 8 : 1); k++)
+                                {
+                                    try
+                                    {
+                                        if (!tabla[i + irany1 * k, j + irany2 * k].MelyikBabu.Contains("üres") && !tabla[i + irany1 * k, j + irany2 * k].MelyikBabu.Contains(kijon))
+                                        {
+                                            if (tabla[i + irany1 * (k+1), j + irany2 * (k+1)].MelyikBabu.Contains("üres"))
+                                            {
+                                                UthetoMezoMentese(i, j, i+irany1*k, j+irany2*k, i + irany1 * (k+1), j + irany2 * (k+1));
+                                            }
+                                            break;
+                                        }
+                                    }
+                                    catch (Exception) { }
+                                }
+                            }
+                        }
+                        
+                    }
+                }
+            }
+            return uthetomezok.Count != 0;
+        }
+
+        private void UthetoMezoMentese(int utoX, int utoY, int uthetoX, int uthetoY, int lephetoX, int lephetoY)
+        {
+            uthetomezok.Add(new UtoUthetoLepheto(tabla[utoX,utoY], tabla[uthetoX, uthetoY], tabla[lephetoX, lephetoY]));
+
+
         }
 
         private void BalOldaliKijelolesVisszaAllitasa()
@@ -186,12 +286,12 @@ namespace Dáma
             bool vilagos = true;
             string melyikbabu = "üres";
 
-
+/*
             for (int i = 0; i < meret; i++)
             {
                 for (int j = 0; j < meret; j++)
                 {
-                    if (!vilagos && feherbabuk < 12 /*&& i!=1*/)
+                    if (!vilagos && feherbabuk < 8 && i!=1)
                     {
                         melyikbabu = "fekete";
                         feherbabuk++;
@@ -206,7 +306,31 @@ namespace Dáma
                     if (j!=7) vilagos = !vilagos;
                     futasokszama++;
                 }
+            }*/
+
+            //ütéses mozagasos
+            
+             for (int i = 0; i < meret; i++)
+            {
+                for (int j = 0; j < meret; j++)
+                {
+                    if (!vilagos && feherbabuk < 8 && i!=1 && futasokszama>15)
+                    {
+                        melyikbabu = "feketedáma";
+                        feherbabuk++;
+                    }
+                    else melyikbabu = "üres";
+                    if (futasokszama > 23 && !vilagos)
+                    {
+                        melyikbabu = "fehérdáma";
+                    }
+
+                    tabla[j,i] = new Mezo((vilagos) ? "világos" : "sötét",melyikbabu, new Point());
+                    if (j!=7) vilagos = !vilagos;
+                    futasokszama++;
+                }
             }
+             
         }
     }
 }
