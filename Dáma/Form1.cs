@@ -94,7 +94,12 @@ namespace Dáma
                     //Nincs ütéskényszer
                     else
                     {
-                        MessageBox.Show("lépjé paraszt");
+                        //a kijelölt bábu tud-e mozogni
+                        if (TudeMozogni(klikkelt))
+                        {
+                        MessageBox.Show("fekete tud mozogni");
+
+                        }
                     }
                 }
             }
@@ -203,6 +208,35 @@ namespace Dáma
             */
         }
 
+        private bool TudeMozogni(Mezo klikkelt)
+        {
+            for (int i = -1; i < 1; i+=2)
+            {
+                for (int j = -1; j < 1; j+=2)
+                {
+                    try
+                    {
+                        if (klikkelt.MelyikBabu.Contains("dáma") || klikkelt.MelyikBabu.Contains("fehér") && j<0)
+                        {
+                            if (tabla[klikkelt.Koordinatak.X + i, klikkelt.Koordinatak.Y + j].MelyikBabu == "üres")
+                            {
+                                return true;
+                            }
+                        }
+                        if (klikkelt.MelyikBabu.Contains("dáma") || klikkelt.MelyikBabu.Contains("fekete") && j > 0)
+                        {
+                            if (tabla[klikkelt.Koordinatak.X + i, klikkelt.Koordinatak.Y + j].MelyikBabu == "üres")
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                    catch (Exception) { }
+                }
+            }
+            return false;
+        }
+
         private void KijelolesekTorlese()
         {
             for (int i = 0; i < meret; i++)
@@ -247,12 +281,20 @@ namespace Dáma
                                 {
                                     try
                                     {
-                                        if (!tabla[i + irany1 * k, j + irany2 * k].MelyikBabu.Contains("üres") && !tabla[i + irany1 * k, j + irany2 * k].MelyikBabu.Contains(kijon))
+                                        if (tabla[i + irany1 * k, j + irany2 * k].MelyikBabu.Contains("üres"))
+                                        {
+                                            continue;
+                                        }
+                                        if ( !tabla[i + irany1 * k, j + irany2 * k].MelyikBabu.Contains(kijon))
                                         {
                                             if (tabla[i + irany1 * (k+1), j + irany2 * (k+1)].MelyikBabu.Contains("üres"))
                                             {
                                                 UthetoMezoMentese(i, j, i+irany1*k, j+irany2*k, i + irany1 * (k+1), j + irany2 * (k+1));
                                             }
+                                            break;
+                                        }
+                                        else
+                                        {
                                             break;
                                         }
                                     }
@@ -286,20 +328,20 @@ namespace Dáma
             bool vilagos = true;
             string melyikbabu = "üres";
 
-/*
+            /*
             for (int i = 0; i < meret; i++)
             {
                 for (int j = 0; j < meret; j++)
                 {
                     if (!vilagos && feherbabuk < 8 && i!=1)
                     {
-                        melyikbabu = "fekete";
+                        melyikbabu = "feketedáma";
                         feherbabuk++;
                     }
                     else melyikbabu = "üres";
                     if (futasokszama > 39 && !vilagos)
                     {
-                        melyikbabu = "fehér";
+                        melyikbabu = "fehérdáma";
                     }
 
                     tabla[j,i] = new Mezo((vilagos) ? "világos" : "sötét",melyikbabu, new Point());
@@ -316,7 +358,7 @@ namespace Dáma
                 {
                     if (!vilagos && feherbabuk < 8 && i!=1 && futasokszama>15)
                     {
-                        melyikbabu = "feketedáma";
+                        melyikbabu = "fekete";
                         feherbabuk++;
                     }
                     else melyikbabu = "üres";
@@ -330,6 +372,7 @@ namespace Dáma
                     futasokszama++;
                 }
             }
+            
              
         }
     }
