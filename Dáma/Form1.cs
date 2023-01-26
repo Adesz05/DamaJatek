@@ -18,7 +18,7 @@ namespace Dáma
         static string kijon = "fehér";
         static bool vanekijeloltbabu = false;
         static List<Mezo> mezokahovalepnilehet = new List<Mezo>();
-        static Mezo kijeloltbabu;
+        static Mezo kijeloltbabu = null;
         static List<UtoUthetoLepheto> uthetomezok = new List<UtoUthetoLepheto>(); // key=lepheto val=utheto
         static bool uteskenyszer = false;
         public Form1()
@@ -67,10 +67,30 @@ namespace Dáma
                     tabla[i, j].Location = new Point(50+i*mezomeret,50+j*mezomeret);
                     tabla[i, j].SizeMode = PictureBoxSizeMode.StretchImage;
                     tabla[i, j].Click += new EventHandler(Klikkeles);
+                    tabla[i, j].MouseEnter += Form1_MouseEnter;
+                    tabla[i, j].MouseLeave += Form1_MouseLeave;
                     tabla[i, j].Koordinatak = new Point(i, j);
                     this.Controls.Add(tabla[i, j]);
 
                 }
+            }
+        }
+
+        private void Form1_MouseLeave(object sender, EventArgs e)
+        {
+            Mezo mezo = sender as Mezo;
+            if (mezo.MelyikSzin == "kijelölt")
+            {
+                mezo.Image = Properties.Resources.sotetzoldpotyivelakozepen;
+            }
+        }
+
+        private void Form1_MouseEnter(object sender, EventArgs e)
+        {
+            Mezo mezo = sender as Mezo;
+            if (mezo.MelyikSzin == "kijelölt")
+            {
+                mezo.Image = Properties.Resources.sotetzoldmezo;
             }
         }
 
@@ -91,6 +111,7 @@ namespace Dáma
                             KijelolesekTorlese();
                             UthetoMezokMegjelenitese(klikkelt);
                             kijeloltbabu = klikkelt;
+                            kijeloltbabu.BorderStyle = BorderStyle.Fixed3D;
                         }
                     }
                     //Nincs ütéskényszer
@@ -102,6 +123,7 @@ namespace Dáma
                             KijelolesekTorlese();
                             LephetoMezoKijeloles(klikkelt);
                             kijeloltbabu = klikkelt;
+                            kijeloltbabu.BorderStyle = BorderStyle.Fixed3D;
                         }
                     }
                 }
@@ -144,6 +166,7 @@ namespace Dáma
                         {
                             //Mozgunk oda
                             Mozgas(kijeloltbabu, klikkelt);
+                            kijeloltbabu.BorderStyle = BorderStyle.None;
                             kijeloltbabu = null;
                             KijelolesekTorlese();
                             uthetomezok.Clear();
@@ -279,6 +302,10 @@ namespace Dáma
 
         private void KijelolesekTorlese()
         {
+            if (kijeloltbabu != null)
+            {
+                kijeloltbabu.BorderStyle = BorderStyle.None;
+            }
             kijeloltbabu = null;
             for (int i = 0; i < meret; i++)
             {

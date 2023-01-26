@@ -22,7 +22,7 @@ namespace Dáma.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace Dáma.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Dáma.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace Dáma.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace Dáma.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap FeherAmoga {
+        public static System.Drawing.Bitmap FeherAmoga {
             get {
                 object obj = ResourceManager.GetObject("FeherAmoga", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -73,7 +73,7 @@ namespace Dáma.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap FeherKoronasAmoga {
+        public static System.Drawing.Bitmap FeherKoronasAmoga {
             get {
                 object obj = ResourceManager.GetObject("FeherKoronasAmoga", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -83,7 +83,7 @@ namespace Dáma.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap FeketeAmoga {
+        public static System.Drawing.Bitmap FeketeAmoga {
             get {
                 object obj = ResourceManager.GetObject("FeketeAmoga", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -93,7 +93,7 @@ namespace Dáma.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap FeketeKoronasAmoga {
+        public static System.Drawing.Bitmap FeketeKoronasAmoga {
             get {
                 object obj = ResourceManager.GetObject("FeketeKoronasAmoga", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -103,7 +103,7 @@ namespace Dáma.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap sotet {
+        public static System.Drawing.Bitmap sotet {
             get {
                 object obj = ResourceManager.GetObject("sotet", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -113,7 +113,7 @@ namespace Dáma.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap sotetmezoFeherAmogaval {
+        public static System.Drawing.Bitmap sotetmezoFeherAmogaval {
             get {
                 object obj = ResourceManager.GetObject("sotetmezoFeherAmogaval", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -123,7 +123,7 @@ namespace Dáma.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap sotetmezoFeherKoronasAmogaval {
+        public static System.Drawing.Bitmap sotetmezoFeherKoronasAmogaval {
             get {
                 object obj = ResourceManager.GetObject("sotetmezoFeherKoronasAmogaval", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -133,7 +133,7 @@ namespace Dáma.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap sotetmezoFeketeAmogaval {
+        public static System.Drawing.Bitmap sotetmezoFeketeAmogaval {
             get {
                 object obj = ResourceManager.GetObject("sotetmezoFeketeAmogaval", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -143,7 +143,7 @@ namespace Dáma.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap sotetmezoFeketeKoronasAmogaval {
+        public static System.Drawing.Bitmap sotetmezoFeketeKoronasAmogaval {
             get {
                 object obj = ResourceManager.GetObject("sotetmezoFeketeKoronasAmogaval", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -153,7 +153,17 @@ namespace Dáma.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap sotetzoldpotyivelakozepen {
+        public static System.Drawing.Bitmap sotetzoldmezo {
+            get {
+                object obj = ResourceManager.GetObject("sotetzoldmezo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap sotetzoldpotyivelakozepen {
             get {
                 object obj = ResourceManager.GetObject("sotetzoldpotyivelakozepen", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -163,7 +173,7 @@ namespace Dáma.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap vilagos {
+        public static System.Drawing.Bitmap vilagos {
             get {
                 object obj = ResourceManager.GetObject("vilagos", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
