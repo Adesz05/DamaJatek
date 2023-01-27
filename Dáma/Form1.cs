@@ -398,13 +398,13 @@ namespace Dáma
             {
                 for (int j = 0; j < meret; j++)
                 {
-                    if (!vilagos && feherbabuk < 8 && i!=1)
+                    if (!vilagos && feherbabuk < 12)
                     {
                         melyikbabu = "fekete";
                         feherbabuk++;
                     }
                     else melyikbabu = "üres";
-                    if (futasokszama > 39 && !vilagos && futasokszama%2==0)
+                    if (futasokszama > 39 && !vilagos)
                     {
                         melyikbabu = "fehér";
                     }
@@ -439,6 +439,27 @@ namespace Dáma
             }
             */
              
+        }
+
+        private void HowTo_MouseEnter(object sender, EventArgs e)
+        {
+            groupBox1.BringToFront();
+            groupBox1.Visible = true;
+        }
+
+        private void HowTo_MouseLeave(object sender, EventArgs e)
+        {
+            groupBox1.Visible = false;
+        }
+
+        private void HowTo_MouseMove(object sender, MouseEventArgs e)
+        {
+            groupBox1.Location = new Point(RelMousPoz().X - groupBox1.Width - 10, RelMousPoz().Y);
+        }
+
+        private Point RelMousPoz()
+        {
+            return new Point(MousePosition.X - this.Location.X - 8, MousePosition.Y - this.Location.Y - 38);
         }
     }
 }
