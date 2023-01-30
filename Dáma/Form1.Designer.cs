@@ -41,7 +41,7 @@ namespace Dáma
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(12, 694);
+            this.label1.Location = new System.Drawing.Point(12, 634);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(710, 37);
             this.label1.TabIndex = 0;
@@ -51,7 +51,7 @@ namespace Dáma
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Dáma.Properties.Resources.FeherKoronasAmoga;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 734);
+            this.pictureBox1.Location = new System.Drawing.Point(12, 674);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(710, 124);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -95,13 +95,13 @@ namespace Dáma
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(734, 861);
+            this.ClientSize = new System.Drawing.Size(734, 819);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.HowTo);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label1);
             this.MaximumSize = new System.Drawing.Size(750, 900);
-            this.MinimumSize = new System.Drawing.Size(750, 900);
+            this.MinimumSize = new System.Drawing.Size(750, 858);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Dáma";

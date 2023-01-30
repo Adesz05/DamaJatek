@@ -64,7 +64,7 @@ namespace Dáma
                             tabla[i, j].Image = Properties.Resources.sotet;
                         }
                     }
-                    tabla[i, j].Location = new Point(50+i*mezomeret,50+j*mezomeret);
+                    tabla[i, j].Location = new Point(50+i*mezomeret,j*mezomeret);
                     tabla[i, j].SizeMode = PictureBoxSizeMode.StretchImage;
                     tabla[i, j].Click += new EventHandler(Klikkeles);
                     tabla[i, j].MouseEnter += Form1_MouseEnter;
