@@ -240,7 +240,7 @@ namespace Dáma
             {
                 for (int oszlop = 0; oszlop < meret; oszlop++)
                 {
-                    if (tabla[sor, oszlop].MelyikBabu.Contains(kijon))
+                    if (!tabla[sor, oszlop].MelyikBabu.Contains(kijon) && tabla[sor, oszlop].MelyikBabu != "üres")
                     {
                         if (TudeMozogni(tabla[sor, oszlop]))
                         {
