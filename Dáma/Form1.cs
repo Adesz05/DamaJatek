@@ -223,6 +223,33 @@ namespace Dáma
             honnan.MelyikBabu = "üres";
             honnan.MelyikSzin = "sötét";
             honnan.Image = Properties.Resources.sotet;
+            if (Beszoritott_e())
+            {
+                if (DialogResult.Yes == MessageBox.Show($"A Győztes a {kijon} bábu Játékosa\nAkarsz új játékot kezdeni?", "Győzelem", MessageBoxButtons.YesNo))
+                {
+                    Application.Restart();
+                }
+                Application.Exit();
+            }
+            
+        }
+
+        private bool Beszoritott_e()
+        {
+            for (int sor = 0; sor < meret; sor++)
+            {
+                for (int oszlop = 0; oszlop < meret; oszlop++)
+                {
+                    if (tabla[sor, oszlop].MelyikBabu.Contains(kijon))
+                    {
+                        if (TudeMozogni(tabla[sor, oszlop]))
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+            return true;
         }
 
         private bool DamaLett_e(Mezo klikkelt)
