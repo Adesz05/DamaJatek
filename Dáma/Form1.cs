@@ -21,6 +21,8 @@ namespace Dáma
         static Mezo kijeloltbabu = null;
         static List<UtoUthetoLepheto> uthetomezok = new List<UtoUthetoLepheto>(); // key=lepheto val=utheto
         static bool uteskenyszer = false;
+        static bool utessorozat = false;
+        static bool szerkesztes = false;
         public Form1()
         {
             MatrixGeneralas();
@@ -66,7 +68,7 @@ namespace Dáma
                     }
                     tabla[i, j].Location = new Point(50+i*mezomeret,j*mezomeret);
                     tabla[i, j].SizeMode = PictureBoxSizeMode.StretchImage;
-                    tabla[i, j].Click += new EventHandler(Klikkeles);
+                    tabla[i, j].MouseClick += new MouseEventHandler(Klikkeles);
                     tabla[i, j].MouseEnter += Form1_MouseEnter;
                     tabla[i, j].MouseLeave += Form1_MouseLeave;
                     tabla[i, j].Koordinatak = new Point(i, j);
@@ -94,14 +96,25 @@ namespace Dáma
             }
         }
 
-        private void Klikkeles(object sender, EventArgs e)
+        private void Klikkeles(object sender, MouseEventArgs e)
         {
             Mezo klikkelt = sender as Mezo;
+
+            if (e.Button == MouseButtons.Right && klikkelt.MelyikSzin != "világos" && szerkesztes)
+            {
+                klikkelt.MelyikBabu = "üres";
+                klikkelt.Image = Properties.Resources.sotet;
+                return;
+            }
 
             //MessageBox.Show(klikkelt.Koordinatak.X + " meg " + klikkelt.Koordinatak.Y);
             //fehér------------------------------------------------------------------------------------------------------------------------------------------------------
             if (klikkelt.MelyikBabu!="üres")
             {
+                if (utessorozat)
+                {
+                    return;
+                }
                 if (klikkelt.MelyikBabu == kijon || klikkelt.MelyikBabu==kijon+"dáma")
                 {
                     if (UtoKenyszerVizsgalat(kijon))
@@ -152,6 +165,13 @@ namespace Dáma
                             KijelolesekTorlese();
                             uthetomezok.Clear();
                             EgyBabuUtoKenyszer(klikkelt.Koordinatak.X, klikkelt.Koordinatak.Y);
+                            utessorozat = uthetomezok.Count() > 0;
+                            if (utessorozat)
+                            {
+                                kijeloltbabu = klikkelt;
+                                kijeloltbabu.BorderStyle = BorderStyle.Fixed3D;
+                                UthetoMezokMegjelenitese(klikkelt);
+                            }
                             if (DamaLett_e(klikkelt) || !(uthetomezok.Count > 0))
                             {
                                 JatekosCsere();
@@ -178,7 +198,7 @@ namespace Dáma
                             JatekosCsere();
                         }
                     }
-                    else
+                    else if (!utessorozat)
                     {
                         KijelolesekTorlese();
                     }
@@ -487,6 +507,23 @@ namespace Dáma
         private Point RelMousPoz()
         {
             return new Point(MousePosition.X - this.Location.X - 8, MousePosition.Y - this.Location.Y - 38);
+        }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.ControlKey)
+            {
+                szerkesztes = true;
+            }
+        }
+
+        private void Form1_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.ControlKey)
+            {
+                szerkesztes = false;
+            }
+
         }
     }
 }
