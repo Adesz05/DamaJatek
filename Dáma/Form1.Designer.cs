@@ -34,8 +34,19 @@ namespace Dáma
             this.HowTo = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.szerkesztesGbox = new System.Windows.Forms.GroupBox();
+            this.ClearMapBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            this.szerkesztesGbox.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -91,11 +102,82 @@ namespace Dáma
             this.label2.TabIndex = 0;
             this.label2.Text = "label2";
             // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = global::Dáma.Properties.Resources.FeherKoronasAmoga;
+            this.pictureBox4.Location = new System.Drawing.Point(25, 19);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(67, 50);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox4.TabIndex = 6;
+            this.pictureBox4.TabStop = false;
+            this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::Dáma.Properties.Resources.FeketeKoronasAmoga;
+            this.pictureBox2.Location = new System.Drawing.Point(99, 19);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(56, 50);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 7;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::Dáma.Properties.Resources.FeherAmoga;
+            this.pictureBox3.Location = new System.Drawing.Point(25, 75);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(67, 38);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 8;
+            this.pictureBox3.TabStop = false;
+            this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Image = global::Dáma.Properties.Resources.FeketeAmoga;
+            this.pictureBox5.Location = new System.Drawing.Point(99, 75);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(56, 38);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox5.TabIndex = 9;
+            this.pictureBox5.TabStop = false;
+            this.pictureBox5.Click += new System.EventHandler(this.pictureBox5_Click);
+            // 
+            // szerkesztesGbox
+            // 
+            this.szerkesztesGbox.Controls.Add(this.ClearMapBtn);
+            this.szerkesztesGbox.Controls.Add(this.pictureBox2);
+            this.szerkesztesGbox.Controls.Add(this.pictureBox5);
+            this.szerkesztesGbox.Controls.Add(this.pictureBox4);
+            this.szerkesztesGbox.Controls.Add(this.pictureBox3);
+            this.szerkesztesGbox.Location = new System.Drawing.Point(549, 641);
+            this.szerkesztesGbox.Name = "szerkesztesGbox";
+            this.szerkesztesGbox.Size = new System.Drawing.Size(173, 166);
+            this.szerkesztesGbox.TabIndex = 10;
+            this.szerkesztesGbox.TabStop = false;
+            this.szerkesztesGbox.Text = "Szerkesztés";
+            this.szerkesztesGbox.Visible = false;
+            // 
+            // ClearMapBtn
+            // 
+            this.ClearMapBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.ClearMapBtn.Location = new System.Drawing.Point(36, 125);
+            this.ClearMapBtn.Name = "ClearMapBtn";
+            this.ClearMapBtn.Size = new System.Drawing.Size(115, 29);
+            this.ClearMapBtn.TabIndex = 10;
+            this.ClearMapBtn.Text = "Tábla ürítése";
+            this.ClearMapBtn.UseVisualStyleBackColor = true;
+            this.ClearMapBtn.Click += new System.EventHandler(this.ClearMapBtn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(734, 819);
+            this.Controls.Add(this.szerkesztesGbox);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.HowTo);
             this.Controls.Add(this.pictureBox1);
@@ -109,6 +191,11 @@ namespace Dáma
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            this.szerkesztesGbox.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -121,6 +208,12 @@ namespace Dáma
         private System.Windows.Forms.Label HowTo;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.GroupBox szerkesztesGbox;
+        private System.Windows.Forms.Button ClearMapBtn;
     }
 }
 

@@ -23,6 +23,8 @@ namespace Dáma
         static bool uteskenyszer = false;
         static bool utessorozat = false;
         static bool szerkesztes = false;
+        static Image szerkesztoKep;
+        static string szerkesztoBabu;
         public Form1()
         {
             MatrixGeneralas();
@@ -100,10 +102,9 @@ namespace Dáma
         {
             Mezo klikkelt = sender as Mezo;
 
-            if (e.Button == MouseButtons.Right && klikkelt.MelyikSzin != "világos" && szerkesztes)
+            if (szerkesztes)
             {
-                klikkelt.MelyikBabu = "üres";
-                klikkelt.Image = Properties.Resources.sotet;
+                Szerkesztes(klikkelt, e);
                 return;
             }
 
@@ -202,6 +203,23 @@ namespace Dáma
                     {
                         KijelolesekTorlese();
                     }
+                }
+            }
+        }
+
+        private void Szerkesztes(Mezo klikkelt, MouseEventArgs e)
+        {
+            if (klikkelt.MelyikSzin != "világos")
+            {
+                if (e.Button == MouseButtons.Right)
+                {
+                    klikkelt.MelyikBabu = "üres";
+                    klikkelt.Image = Properties.Resources.sotet;
+                }
+                else if(e.Button == MouseButtons.Left && szerkesztoKep != null)
+                {
+                    klikkelt.Image = szerkesztoKep;
+                    klikkelt.MelyikBabu = szerkesztoBabu;
                 }
             }
         }
@@ -514,6 +532,7 @@ namespace Dáma
             if (e.KeyCode == Keys.ControlKey)
             {
                 szerkesztes = true;
+                szerkesztesGbox.Visible = true;
             }
         }
 
@@ -522,8 +541,62 @@ namespace Dáma
             if (e.KeyCode == Keys.ControlKey)
             {
                 szerkesztes = false;
+                szerkesztesGbox.Visible = false;
             }
 
+        }
+
+        private void ClearMapBtn_Click(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+            btn.Enabled = false;
+            for (int sor = 0; sor < meret; sor++)
+            {
+                for (int oszlop = 0; oszlop < meret; oszlop++)
+                {
+                    if (tabla[sor, oszlop].MelyikSzin != "világos")
+                    {
+                        tabla[sor, oszlop].MelyikBabu = "üres";
+                        tabla[sor, oszlop].Image = Properties.Resources.sotet;
+                    }
+                }
+            }
+            btn.Enabled = true;
+        }
+
+        
+
+        private void SzerkesztoKepKivalasztas(object sender, string melyikbabu, Image kep)
+        {
+            PictureBox pBox = sender as PictureBox;
+            szerkesztoKep = kep;
+            szerkesztoBabu = melyikbabu;
+
+
+            foreach (PictureBox item in new List<PictureBox>() { pictureBox2, pictureBox3, pictureBox4, pictureBox5 })
+            {
+                item.BorderStyle = BorderStyle.None;
+            }
+            pBox.BorderStyle = BorderStyle.Fixed3D;
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            SzerkesztoKepKivalasztas(sender, "feketedáma", Properties.Resources.sotetmezoFeketeKoronasAmogaval);
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            SzerkesztoKepKivalasztas(sender, "fehér", Properties.Resources.sotetmezoFeherAmogaval);
+        }
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            SzerkesztoKepKivalasztas(sender, "fehérdáma", Properties.Resources.sotetmezoFeherKoronasAmogaval);
+        }
+
+        private void pictureBox5_Click(object sender, EventArgs e)
+        {
+            SzerkesztoKepKivalasztas(sender, "fekete", Properties.Resources.sotetmezoFeketeAmogaval);
         }
     }
 }

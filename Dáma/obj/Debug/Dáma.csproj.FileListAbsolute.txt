@@ -48,3 +48,13 @@ D:\xampp\htdocs\2-14 SZFT 2022-2023\Dama\Dáma\obj\Debug\Dáma.csproj.CoreCompil
 D:\xampp\htdocs\2-14 SZFT 2022-2023\Dama\Dáma\obj\Debug\Dáma.exe
 D:\xampp\htdocs\2-14 SZFT 2022-2023\Dama\Dáma\obj\Debug\Dáma.pdb
 D:\xampp\htdocs\2-14 SZFT 2022-2023\Dama\Dáma\obj\Debug\Dáma.csprojAssemblyReference.cache
+D:\Tananyag\Aszalk\Dáma\Dáma\bin\Debug\Dáma.exe.config
+D:\Tananyag\Aszalk\Dáma\Dáma\bin\Debug\Dáma.exe
+D:\Tananyag\Aszalk\Dáma\Dáma\bin\Debug\Dáma.pdb
+D:\Tananyag\Aszalk\Dáma\Dáma\obj\Debug\Dáma.csproj.AssemblyReference.cache
+D:\Tananyag\Aszalk\Dáma\Dáma\obj\Debug\Dáma.Form1.resources
+D:\Tananyag\Aszalk\Dáma\Dáma\obj\Debug\Dáma.Properties.Resources.resources
+D:\Tananyag\Aszalk\Dáma\Dáma\obj\Debug\Dáma.csproj.GenerateResource.cache
+D:\Tananyag\Aszalk\Dáma\Dáma\obj\Debug\Dáma.csproj.CoreCompileInputs.cache
+D:\Tananyag\Aszalk\Dáma\Dáma\obj\Debug\Dáma.exe
+D:\Tananyag\Aszalk\Dáma\Dáma\obj\Debug\Dáma.pdb
