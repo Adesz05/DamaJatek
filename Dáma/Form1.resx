@@ -117,4 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Amógáma(Dáma)~(Beretka Gellért) szabályok
+Az amógámát 8x8-as táblán játszuk, összesen 24 amóga alakú bábuval, 12-12 mindkét játékosnak.
+Mind a kettő játékos egyet-egyet léphet minden körben, átlósan balra, vagy jobbra.
+A játékban 2 féle bábu létezik: 
+    A sima amóga amely 1-eket tud lépni és vissza nem(kivétel ha le tud ütni egy bábut)
+    Az Amógáma aki végtelen hosszúságban léphet(mint sakkban a futó) és tud visszafele is lépni
+Amógámát úgy lehet szerezni, ha beérünk egy amógával az ellenfél utolsó sorába.
+A bábu leütés:
+    Amógánál: ha bármely keresztbe szomszédos bábu az ellenfél bábuja és "van hely mögötte" azaz üres mező van az üthető bábu mögött, akkor ütni lehet.
+    Amógámánál: Ugyan az mint az Amógánál, de az Amógáma "nekifutásból" is tud ütni. Azaz az üthető bábu és dáma között lehet egy vagy több üres hely is.
+A játékban van egy úgynevezett ütéskényszer, ami azt jelenti, hogy ha bármelyik bábuval lehet ütni akkor ütni is kell és nem lehet csak úgy lépni egyet</value>
+  </data>
 </root>

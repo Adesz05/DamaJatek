@@ -29,6 +29,7 @@ namespace Dáma
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.HowTo = new System.Windows.Forms.Label();
@@ -88,7 +89,7 @@ namespace Dáma
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(449, 22);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(200, 196);
+            this.groupBox1.Size = new System.Drawing.Size(192, 469);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Hogyan játsz!";
@@ -96,11 +97,11 @@ namespace Dáma
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(7, 20);
+            this.label2.Location = new System.Drawing.Point(-1, 16);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(187, 173);
+            this.label2.Size = new System.Drawing.Size(187, 450);
             this.label2.TabIndex = 0;
-            this.label2.Text = "label2";
+            this.label2.Text = resources.GetString("label2.Text");
             // 
             // pictureBox4
             // 
